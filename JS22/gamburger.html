@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Гамбургеры</title>
+</head>
+<body>
+<div id="container">
+    <div class="big-burger">
+        Большой бургер
+        <span id="big-price">0</span> рублей <span id="big-calory">0</span> калорий
+        <button class="buy-btn-big">Купить</button>
+    </div>
+    <div class="small-burger">
+        Маленький бургер
+        <span id="small-price">0</span> рублей <span id="small-calory">0</span> калорий
+        <button class="buy-btn-small">Купить</button>
+    </div>
+</div>
+
+<script>
+    // Элементы цен бургеров
+    let smallPrice = document.getElementById('small-price');
+    let bigPrice = document.getElementById('big-price');
+    // Элементы калорий бургеров
+    let smallCalory = document.getElementById('small-calory');
+    let bigCalory = document.getElementById('big-calory');
+
+    // Кнопка купить большой бургер
+    let bigBtn = document.querySelector('.buy-btn-big');
+    bigBtn.addEventListener('click', getBigPriceAndCalory);
+
+    // Кнопка купить маленький бургер
+    let smallBtn = document.querySelector('.buy-btn-small');
+    smallBtn.addEventListener('click', getSmallPriceAndCalory);
+
+
+    /**
+     * Функция возвращает цену и калории маленького бургера
+     * @returns {number[]}
+     */
+    function getSmallPriceAndCalory() {
+        // Убираем кнопку 'купить' и элементы альтернативного бургера
+        document.querySelector('.big-burger').remove();
+        document.querySelector('.buy-btn-small').remove();
+        // Создаем кнопки выбора начинки
+        let cheese = document.createElement('button');
+        document.body.appendChild(cheese).className = "cheese";
+        let salad = document.createElement('button');
+        document.body.appendChild(salad).className = "salad";
+        let potato = document.createElement('button');
+        document.body.appendChild(potato).className = "potato";
+        cheese.innerText = 'Сыр';
+        salad.innerText = 'Салат';
+        potato.innerText = 'Картофель';
+        // Вызываем функцию выбранной начинки
+        cheese.onclick = stuffingCheeseSmall;
+        salad.onclick = stuffingSaladSmall;
+        potato.onclick = stuffingPotatoSmall;
+        // Возвращаем цену и калории маленького бургера
+        return [smallPrice.innerText = 50, smallCalory.innerText = 20];
+    }
+
+    /**
+     * Функция возвращает цену и калории большого бургера
+     * @returns {number[]}
+     */
+    function getBigPriceAndCalory() {
+        // Убираем кнопку 'купить' и элементы альтернативного бургера
+        document.querySelector('.small-burger').remove();
+        document.querySelector('.buy-btn-big').remove();
+        // Создаем кнопки выбора начинки
+        let cheese = document.createElement('button');
+        document.body.appendChild(cheese).className = "cheese";
+        let salad = document.createElement('button');
+        document.body.appendChild(salad).className = "salad";
+        let potato = document.createElement('button');
+        document.body.appendChild(potato).className = "potato";
+        cheese.innerText = 'Сыр';
+        salad.innerText = 'Салат';
+        potato.innerText = 'Картофель';
+        // Вызываем функцию выбранной начинки
+        cheese.onclick = stuffingCheeseBig;
+        salad.onclick = stuffingSaladBig;
+        potato.onclick = stuffingPotatoBig;
+        // Возвращаем цену и калории большого бургера
+        return [bigPrice.innerText = 100, bigCalory.innerText = 40];
+    }
+
+    /**
+     * Функция возвращает цену и калории большого бургера с сыром
+     * @returns {number[]}
+     */
+    function stuffingCheeseBig() {
+        // Удаляем кнопки выбора начинки
+        document.querySelector('.cheese').remove();
+        document.querySelector('.salad').remove();
+        document.querySelector('.potato').remove();
+        let sause = document.createElement('button');
+        // Создаем кнопки выбора приправы или майонеза
+        document.body.appendChild(sause).className = "sauce";
+        let mayonnaise  = document.createElement('button');
+        document.body.appendChild(mayonnaise).className = "mayonnaise";
+        sause.innerText = 'Приправа';
+        mayonnaise.innerText = 'Майонез';
+        // Вызываем подсчет стоимости выбранных начинок
+        sause.onclick = () => {document.querySelector('.sauce').remove();
+            return bigPrice.innerText = parseInt(bigPrice.innerText) + 15};
+        mayonnaise.onclick = () => {document.querySelector('.mayonnaise').remove();
+            return [bigPrice.innerText = parseInt(bigPrice.innerText) + 20,
+                bigCalory.innerText = parseInt(bigCalory.innerText) + 5]};
+        // Возвращаем общую цену собранного бургера
+        return [bigPrice.innerText = parseInt(bigPrice.innerText) + 10,
+            bigCalory.innerText = parseInt(bigCalory.innerText) + 20];
+    }
+
+    /**
+     * Функция возвращает цену и калории большого бургера с салатом
+     * @returns {number[]}
+     */
+    function stuffingSaladBig() {
+        // Удаляем кнопки выбора начинки
+        document.querySelector('.cheese').remove();
+        document.querySelector('.salad').remove();
+        document.querySelector('.potato').remove();
+        // Создаем кнопки выбора приправы или майонеза
+        let sause = document.createElement('button');
+        document.body.appendChild(sause).className = "sauce";
+        let mayonnaise  = document.createElement('button');
+        document.body.appendChild(mayonnaise).className = "mayonnaise";
+        sause.innerText = 'Приправа';
+        mayonnaise.innerText = 'Майонез';
+        // Вызываем подсчет стоимости выбранных начинок
+        sause.onclick = () => {document.querySelector('.sauce').remove();
+            return bigPrice.innerText = parseInt(bigPrice.innerText) + 15};
+        mayonnaise.onclick = () => {document.querySelector('.mayonnaise').remove();
+            return [bigPrice.innerText = parseInt(bigPrice.innerText) + 20,
+                bigCalory.innerText = parseInt(bigCalory.innerText) + 5]};
+        // Возвращаем общую цену собранного бургера
+        return [bigPrice.innerText = parseInt(bigPrice.innerText) + 20,
+            bigCalory.innerText = parseInt(bigCalory.innerText) + 5];
+    }
+
+    /**
+     * Функция возвращает цену и калории большого бургера с картофелем
+     * @returns {number[]}
+     */
+    function stuffingPotatoBig() {
+        // Удаляем кнопки выбора начинки
+        document.querySelector('.cheese').remove();
+        document.querySelector('.salad').remove();
+        document.querySelector('.potato').remove();
+        // Создаем кнопки выбора приправы или майонеза
+        let sause = document.createElement('button');
+        document.body.appendChild(sause).className = "sauce";
+        let mayonnaise  = document.createElement('button');
+        document.body.appendChild(mayonnaise).className = "mayonnaise";
+        sause.innerText = 'Приправа';
+        mayonnaise.innerText = 'Майонез';
+        // Вызываем подсчет стоимости выбранных начинок
+        sause.onclick = () => {document.querySelector('.sauce').remove();
+        return bigPrice.innerText = parseInt(bigPrice.innerText) + 15};
+        mayonnaise.onclick = () => {document.querySelector('.mayonnaise').remove();
+        return [bigPrice.innerText = parseInt(bigPrice.innerText) + 20,
+            bigCalory.innerText = parseInt(bigCalory.innerText) + 5]};
+        // Возвращаем общую цену собранного бургера
+        return [bigPrice.innerText = parseInt(bigPrice.innerText) + 15,
+            bigCalory.innerText = parseInt(bigCalory.innerText) + 10];
+    }
+
+    /**
+     * Функция возвращает цену и калории маленького бургера с сыром
+     * @returns {number[]}
+     */
+    function stuffingCheeseSmall() {
+        // Удаляем кнопки выбора начинки
+        document.querySelector('.cheese').remove();
+        document.querySelector('.salad').remove();
+        document.querySelector('.potato').remove();
+        // Создаем кнопки выбора приправы или майонеза
+        let sause = document.createElement('button');
+        document.body.appendChild(sause).className = "sauce";
+        let mayonnaise  = document.createElement('button');
+        document.body.appendChild(mayonnaise).className = "mayonnaise";
+        sause.innerText = 'Приправа';
+        mayonnaise.innerText = 'Майонез';
+        // Вызываем подсчет стоимости выбранных начинок
+        sause.onclick = () => {document.querySelector('.sauce').remove();
+            return smallPrice.innerText = parseInt(smallPrice.innerText) + 15};
+        mayonnaise.onclick = () => {document.querySelector('.mayonnaise').remove();
+            return [smallPrice.innerText = parseInt(smallPrice.innerText) + 20,
+                smallCalory.innerText = parseInt(smallCalory.innerText) + 5]};
+        // Возвращаем общую цену собранного бургера
+        return [smallPrice.innerText = parseInt(smallPrice.innerText) + 10,
+            smallCalory.innerText = parseInt(smallCalory.innerText) + 20];
+    }
+
+    /**
+     * Функция возвращает цену и калории маленького бургера с салатом
+     * @returns {number[]}
+     */
+    function stuffingSaladSmall() {
+        // Удаляем кнопки выбора начинки
+        document.querySelector('.cheese').remove();
+        document.querySelector('.salad').remove();
+        document.querySelector('.potato').remove();
+        // Создаем кнопки выбора приправы или майонеза
+        let sause = document.createElement('button');
+        document.body.appendChild(sause).className = "sauce";
+        let mayonnaise  = document.createElement('button');
+        document.body.appendChild(mayonnaise).className = "mayonnaise";
+        sause.innerText = 'Приправа';
+        mayonnaise.innerText = 'Майонез';
+        // Вызываем подсчет стоимости выбранных начинок
+        sause.onclick = () => {document.querySelector('.sauce').remove();
+            return smallPrice.innerText = parseInt(smallPrice.innerText) + 15};
+        mayonnaise.onclick = () => {document.querySelector('.mayonnaise').remove();
+            return [smallPrice.innerText = parseInt(smallPrice.innerText) + 20,
+                smallCalory.innerText = parseInt(smallCalory.innerText) + 5]};
+        // Возвращаем общую цену собранного бургера
+        return [smallPrice.innerText = parseInt(smallPrice.innerText) + 20,
+            smallCalory.innerText = parseInt(smallCalory.innerText) + 5];
+    }
+
+    /**
+     * Функция возвращает цену и калории маленького бургера с картофелем
+     * @returns {number[]}
+     */
+    function stuffingPotatoSmall() {
+        // Удаляем кнопки выбора начинки
+        document.querySelector('.cheese').remove();
+        document.querySelector('.salad').remove();
+        document.querySelector('.potato').remove();
+        // Создаем кнопки выбора приправы или майонеза
+        let sause = document.createElement('button');
+        document.body.appendChild(sause).className = "sauce";
+        let mayonnaise  = document.createElement('button');
+        document.body.appendChild(mayonnaise).className = "mayonnaise";
+        sause.innerText = 'Приправа';
+        mayonnaise.innerText = 'Майонез';
+        // Вызываем подсчет стоимости выбранных начинок
+        sause.onclick = () => {document.querySelector('.sauce').remove();
+        return smallPrice.innerText = parseInt(smallPrice.innerText) + 15};
+        mayonnaise.onclick = () => {document.querySelector('.mayonnaise').remove();
+        return [smallPrice.innerText = parseInt(smallPrice.innerText) + 20,
+            smallCalory.innerText = parseInt(smallCalory.innerText) + 5]};
+        // Возвращаем общую цену собранного бургера
+        return [smallPrice.innerText = parseInt(smallPrice.innerText) + 15,
+            smallCalory.innerText = parseInt(smallCalory.innerText) + 10];
+    }
+
+</script>
+</body>
+</html>
