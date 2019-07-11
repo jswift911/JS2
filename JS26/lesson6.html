@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+
+    <div class="class">
+        <button v-for="tab of tabs"
+        :key="tab"
+        @click="currentTab = tab">
+            {{ tab }}
+        </button>
+    </div>
+
+    <component :is="createComp"></component>
+
+    <!--<el-some title="Some" :counter="num" @increase="num++" @some="some">-->
+    <!--<h3>From slot</h3>-->
+    <!--<button @click="some">Some btn</button>-->
+<!--</el-some>-->
+    <!--<el-some title="Hello World" :counter="num" @increase="num++"></el-some>-->
+    <!--<el-some title="Hi" :counter="num" @increase="num++"></el-some>-->
+    <!--<el-some :title="text" :counter="num" @increase="num++"></el-some>-->
+    <!--<child-comp></child-comp>-->
+
+    <!--<button @click="some">Some</button>-->
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="components.js"></script>
+<script src="main.js">
+</script>
+</body>
+</html>
